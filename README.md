@@ -1,115 +1,118 @@
+# Summary of Li Mu's Lecture at SJTU
 
-# 李沐 SJTU 讲座总结
+[简体中文](README.zh.md) | English
 
-## 第 1 部分：语言模型
+## Part 1: Language Models
 
-语言模型的构建涉及三大核心要素：算力、数据、算法。李沐老师形象地将机器学习比喻为“老中医”，而将深度学习与语言模型比作“炼丹”：数据是炼丹的材料，算力是丹炉，算法是丹方。深度学习是为特定领域问题优化的工具，而语言模型具有跨领域的广泛适应性。
+The construction of language models revolves around three core elements: computational power, data, and algorithms. Li Mu vividly compares machine learning to traditional Chinese medicine, with deep learning and language models likened to "alchemy": data serves as the raw materials, computational power as the furnace, and algorithms as the alchemical formula. While deep learning is tailored to specific domain problems, language models possess broad cross-domain adaptability.
 
-### 硬件发展趋势
+### Hardware Development Trends
 
-硬件在语言模型的开发中起着至关重要的作用，以下按重要程度递减进行阐述：
+Hardware plays a crucial role in the development of language models, presented here in decreasing order of importance:
 
-1. **带宽**
+1. **Bandwidth**
 
-   * 随着语言模型规模的扩大，分布式训练成为必要。当前每根光纤的速度为 400 Gb，正在向 800 Gb 过渡（Infiniband 以太网）。
-   * GB200 72NVL 机型集成了 72 个 GPU，每个 GPU 的速度达到 1.8 TB/s，虽然通过光纤传输数据，但即使是几纳秒的延迟也会在分布式训练中产生性能影响。
+   * As language models scale up, distributed training becomes necessary. The current speed of each optical fiber is 400 Gb, transitioning to 800 Gb (Infiniband Ethernet).
+   * The GB200 72NVL model integrates 72 GPUs, each with a speed of 1.8 TB/s. Despite using optical fiber for data transmission, even nanosecond-level delays can impact performance in distributed training.
 
-2. **内存**
+2. **Memory**
 
-   * 现代模型体积庞大，对内存的需求极高。当前工艺支持每个芯片封装 192GB 内存，但已达到瓶颈。若无技术突破，未来芯片的内存上限可能在 200GB 左右，直接限制了模型的规模。
+   * Modern models are large and require substantial memory. Current technology supports 192GB of memory per chip, but this has reached its limit. Without technological breakthroughs, the memory limit for future chips may cap at 200GB, directly limiting model size.
 
-3. **算力**
+3. **Computational Power**
 
-   * 随着摩尔定律的推进，处理器的纳米工艺更精细，频率更高。8 位浮点数的成熟应用及 4 位浮点数的引入提升了带宽利用率，使得算力进一步增强。
+   * As Moore's Law advances, processor nanotechnology becomes more refined, and frequency increases. The mature application of 8-bit floating-point numbers and the introduction of 4-bit floating-point numbers enhance bandwidth utilization, further boosting computational power.
 
-4. **资源**
+4. **Resources**
 
-   * 更大规模的芯片对供电与散热提出了更高要求。一千块芯片需要一兆瓦的电力支撑，若无有效的散热方案，液体冷却可能成为必需。
+   * Larger chips demand more power and cooling. One thousand chips require one megawatt of power. Without effective cooling solutions, liquid cooling may become necessary.
 
-5. **替代方案**
+5. **Alternative Solutions**
 
-   * 市场上其他厂商的芯片如谷歌 TPUv6、英特尔哈瓦那3、AMD Mi350等，虽然在推理方面有所表现，但在训练方面仍难以与 NVIDIA 抗衡。
+   * Other chip manufacturers like Google TPUv6, Intel Habana 3, and AMD Mi350 perform well in inference tasks but struggle to compete with NVIDIA in training.
 
-### 模型的发展
+### Model Development
 
-摩尔定律推动了模型规模的增长，训练成本逐年下降，时间缩短。
+Moore's Law drives the growth of model sizes, reducing training costs and shortening training time annually.
 
-1. **语言模型**
+1. **Language Models**
 
-   * 当前预训练规模在 10-50T tokens，参数量在 100-500B 之间。尽管更大规模的闭源模型可能存在，但它们多以 MoE（稀疏专家）形式存在，实际有效大小仍在 500B 左右。
+   * Current pre-training scales range from 10-50T tokens, with parameter sizes between 100-500B. While larger closed-source models exist, they often use MoE (Mixture of Experts), with an effective size still around 500B.
 
-2. **演讲与语音模型**
+2. **Speech and Voice Models**
 
-   * 端到端模型在情感表达和语调方面表现出色，延迟从 1s 缩短至 300ms，极大提升了人机交互体验。
+   * End-to-end models excel in emotion and tone expression, with latency reduced from 1s to 300ms, significantly enhancing human-computer interaction.
 
-3. **音乐生成**
+3. **Music Generation**
 
-   * 技术已经成熟，当前挑战主要集中在版权问题上。大型公司通过购买版权解决问题，小型公司zhijieshang。
+   * The technology is mature, with current challenges primarily related to copyright issues. Large companies resolve this by purchasing copyrights, while smaller companies face more restrictions.
 
-4. **图片生成**
+4. **Image Generation**
 
-   * 分辨率突破 1MP，生成图像的“灵魂感”成为新的挑战。
+   * Resolution has surpassed 1MP, but generating images with a "soul" remains a new challenge.
 
-5. **视频生成**
+5. **Video Generation**
 
-   * 目前视频生成训练成本高昂，连贯性和一致性仍是关键难题。
+   * Training costs for video generation are currently high, with continuity and consistency between frames being key difficulties.
 
-6. **多模态模型**
+6. **Multimodal Models**
 
-   * 融合文本、图片、音频、视频等多种模式的数据成为趋势，文本信息的泛化能力尤为突出。
+   * The trend is towards integrating data from multiple modalities such as text, images, audio, and video, with text information showing particularly strong generalization capabilities.
 
-### 应用场景
+### Application Scenarios
 
-1. **文科白领**
+1. **Liberal Arts Professionals**
 
-   * 语言模型极大提高了文科白领的工作效率，个人助理、电话客服、文件处理、游戏与娱乐、教育等领域已广泛应用。
+   * Language models greatly enhance the efficiency of liberal arts professionals, with applications in personal assistants, customer service, document processing, gaming and entertainment, and education.
 
-2. **工科白领**
+2. **Engineering Professionals**
 
-   * 虽然尚无法完全取代工科白领的工作，但语言模型已显著减少了工作负担，特别是在软件工程领域。
+   * While language models cannot yet fully replace engineering professionals, they significantly reduce workload, especially in software engineering.
 
-3. **蓝领**
+3. **Blue-Collar Workers**
 
-   * 语言模型在自动驾驶领域表现突出，然而机器人领域因数据匮乏、训练难度高，进展相对缓慢。
+   * Language models perform exceptionally in autonomous driving, but progress in robotics is slower due to a lack of data and high training difficulty.
 
-|          |    简单任务    |    复杂任务    |
+|          |    Simple Tasks    |    Complex Tasks    |
 |:--------:|:--------------:|:--------------:|
-| 文科白领 |     😄    | 😞 |
-| 工科白领 | 😞 | 😭 |
-| 蓝领     | 😭 | 😭 |
+| Liberal Arts |     😄    | 😞 |
+| Engineering | 😞 | 😭 |
+| Blue-Collar  | 😭 | 😭 |
 
-### 总结与展望
+### Conclusion and Outlook
 
-1. **预训练与后训练同等重要**
+1. **Pre-training and Post-training Are Equally Important**
 
-   * 预训练已由技术问题转变为工程问题，而后训练仍需在技术上深入探索。
+   * Pre-training has transitioned from a technical issue to an engineering challenge, while post-training still requires technical exploration.
 
-2. **垂直领域模型的挑战**
+2. **Challenges in Vertical Domain Models**
 
-   * 专注于复杂规则遵循、推理与数学计算的领域模型需要具备一般领域的基础技能。
+   * Domain-specific models that focus on complex rule adherence, reasoning, and mathematical calculations need to possess general domain skills.
 
-3. **评估至关重要**
+3. **Evaluation Is Crucial**
 
-   * 模型在实际应用中的复杂性要求精细评估，简单的评估难以准确反映模型性能。
+   * The complexity of real-world applications demands precise evaluation; simple evaluations often fail to accurately reflect model performance.
 
-4. **数据的重要性**
+4. **The Importance of Data**
 
-   * 数据决定了模型的上限，算法决定了模型的下限。当前研究仍距 AGI 甚远，未来在数据方面的投入将是关键。
+   * Data determines the upper limit of a model, while algorithms determine the lower limit. Current research is still far from achieving AGI (Artificial General Intelligence), with future efforts likely focusing heavily on data.
 
-5. **算力**
+5. **Computational Power**
 
-   * 自建 GPU 与租用 GPU 在成本上差异不大，NVIDIA 垄断导致市场算力价格居高不下。
+   * Building GPUs in-house versus renting them shows little difference in cost due to NVIDIA's monopoly. However, owning GPUs may be beneficial when handling massive data volumes.
 
-    ![alt text](image.png)
+### The Future of Language Models
 
-### 语言模型的未来
+The development of language models is gradually pushing beyond the boundaries of traditional machine learning. The challenges and opportunities coexist, with future research focusing on improving data quality, optimizing algorithms, and deepening the application of multimodal integration and vertical domain models.
 
-语言模型的发展正逐步突破传统机器学习的界限，面临的挑战与机遇并存。未来的研究将聚焦于如何进一步提升数据质量、优化算法、以及在多模态融合与垂直领域模型中的深度应用。
+## Part 2
 
-## 第 2 部分
+For insights into Li Mu's experiences in personal development and career planning, please refer to the following Zhihu articles:
 
-有关李沐老师在个人发展与职业规划方面的经验分享，请参见以下知乎文章：
+- [Reflection on Five Years of Work](https://zhuanlan.zhihu.com/p/374777591)
+- [PhD Journey Over Five Years](https://zhuanlan.zhihu.com/p/25099638)
+- [One Year of Entrepreneurship, Three Years of Life](https://zhuanlan.zhihu.com/p/714533901)
 
-- [工作五年反思](https://zhuanlan.zhihu.com/p/374777591)
-- [博士这五年](https://zhuanlan.zhihu.com/p/25099638)
-- [创业一年，人间三年](https://zhuanlan.zhihu.com/p/714533901)
+---
+
+If there are any inaccuracies or areas for improvement in this summary, your feedback is welcome.
